@@ -269,6 +269,11 @@ a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
     height: 100%;
     object-fit: cover;
     filter: grayscale(100%) contrast(1.1);
+    transition: filter var(--transition-smooth);
+}
+
+.hero-image img:hover {
+    filter: grayscale(0%);
 }
 
 /* =========================================
@@ -292,6 +297,12 @@ a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
     aspect-ratio: 4/5;
     object-fit: cover;
     box-shadow: -20px 20px 0 rgba(170, 152, 169, 0.1);
+    filter: grayscale(100%) contrast(1.1);
+    transition: filter var(--transition-smooth);
+}
+
+.sobre-image img:hover {
+    filter: grayscale(0%);
 }
 
 .sobre-text {
@@ -325,6 +336,10 @@ a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
     transform: translateY(-10px);
     border-top-color: var(--color-accent-lilac);
     box-shadow: 0 20px 40px rgba(170, 152, 169, 0.08);
+}
+
+.card:hover .card-img-placeholder {
+    filter: grayscale(0%);
 }
 
 .card-header-inner {
@@ -362,6 +377,8 @@ a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
     font-weight: 600;
     background-position: center;
     overflow: hidden;
+    filter: grayscale(100%) contrast(1.1);
+    transition: filter var(--transition-smooth), transform var(--transition-smooth);
 }
 
 .card p {
@@ -785,10 +802,6 @@ a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
 
     .contato {
         padding-bottom: 5rem; /* Space for FAB */
-    }
-
-    .sobre-image img {
-        filter: none;
     }
 }
 
