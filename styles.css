@@ -164,15 +164,59 @@ a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
 }
 
 /* =========================================
-   NAVBAR
+   TOP BAR & NAVBAR
    ========================================= */
+.top-bar {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1001;
+    font-size: 0.75rem;
+    border-bottom: 1px solid rgba(170, 152, 169, 0.3);
+}
+
+.top-bar-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.promo-label {
+    background-color: var(--color-accent-lilac);
+    color: var(--color-white);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+}
+
+.top-timer {
+    font-weight: 600;
+    color: #efdfbb;
+    letter-spacing: 0.05em;
+    min-width: 150px;
+    text-align: center;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: var(--spacing-md) 5%;
     position: fixed;
-    top: 0;
+    top: 40px;
     width: 100%;
     background-color: rgba(255, 255, 240, 0.98);
     backdrop-filter: blur(10px);
@@ -361,128 +405,6 @@ a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
    ========================================= */
 .servicos {
     background-color: var(--color-ivory);
-}
-
-.promo-banner {
-    background-color: var(--color-black);
-    color: var(--color-white);
-    padding: 3rem;
-    border-radius: 40px;
-    margin-bottom: 4rem;
-    border: 1px solid rgba(170, 152, 169, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.promo-banner::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(170, 152, 169, 0.1) 0%, transparent 70%);
-    pointer-events: none;
-}
-
-.promo-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 3rem;
-    position: relative;
-    z-index: 2;
-}
-
-.promo-badge-pulse {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background-color: var(--color-accent-lilac);
-    color: var(--color-white);
-    font-size: 0.7rem;
-    font-weight: 700;
-    border-radius: 50px;
-    margin-bottom: 1rem;
-    letter-spacing: 0.1em;
-    animation: promo-pulse 2s infinite;
-}
-
-@keyframes promo-pulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(170, 152, 169, 0.4); }
-    70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(170, 152, 169, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(170, 152, 169, 0); }
-}
-
-.promo-info h3 {
-    font-size: 1.8rem;
-    font-family: var(--font-header);
-    line-height: 1.2;
-    margin: 0;
-    max-width: 400px;
-}
-
-.promo-timer {
-    display: flex;
-    gap: 2rem;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 1.5rem 2.5rem;
-    border-radius: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.timer-segment {
-    text-align: center;
-    min-width: 60px;
-}
-
-.timer-segment span {
-    display: block;
-    font-size: 2.2rem;
-    font-weight: 700;
-    font-family: var(--font-header);
-    color: #efdfbb; /* Champagne gold tint */
-}
-
-.timer-segment small {
-    display: block;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.6;
-    margin-top: -5px;
-}
-
-@media (max-width: 991px) {
-    .promo-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 2rem;
-    }
-    
-    .promo-info h3 {
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .promo-banner {
-        padding: 2rem 1rem;
-    }
-    
-    .promo-timer {
-        gap: 0.8rem;
-        padding: 1rem;
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .timer-segment span {
-        font-size: 1.5rem;
-    }
-    
-    .timer-segment {
-        min-width: 50px;
-    }
 }
 
 .cards-grid {

@@ -168,16 +168,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Promotion Countdown Logic
-    function updatePromoCountdown() {
-        const now = new Date();
-        // Set target to the last day of the current month
-        const targetDate = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
-        
-        const timeLeft = targetDate - now;
+    const now = new Date();
+    // Perpetual countdown: Always starts around 8d 21h 34m for the visitor
+    const targetDate = new Date(now.getTime() + (8 * 24 * 60 * 60 * 1000) + (21 * 60 * 60 * 1000) + (34 * 60 * 1000));
 
-        if (timeLeft <= 0) {
-            return;
-        }
+    function updatePromoCountdown() {
+        const currentTime = new Date();
+        const timeLeft = targetDate - currentTime;
+
+        if (timeLeft <= 0) return;
 
         const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
         const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
