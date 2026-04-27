@@ -166,4 +166,37 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Promotion Countdown Logic
+    function updatePromoCountdown() {
+        const now = new Date();
+        // Set target to the last day of the current month
+        const targetDate = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
+        
+        const timeLeft = targetDate - now;
+
+        if (timeLeft <= 0) {
+            return;
+        }
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minsEl = document.getElementById('minutes');
+        const secsEl = document.getElementById('seconds');
+
+        if(daysEl) daysEl.innerText = days.toString().padStart(2, '0');
+        if(hoursEl) hoursEl.innerText = hours.toString().padStart(2, '0');
+        if(minsEl) minsEl.innerText = minutes.toString().padStart(2, '0');
+        if(secsEl) secsEl.innerText = seconds.toString().padStart(2, '0');
+    }
+
+    if(document.getElementById('countdown')){
+        setInterval(updatePromoCountdown, 1000);
+        updatePromoCountdown();
+    }
 });
