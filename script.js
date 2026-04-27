@@ -166,36 +166,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    // Promotion Countdown Logic
-    const now = new Date();
-    // Perpetual countdown: Always starts around 8d 21h 34m for the visitor
-    const targetDate = new Date(now.getTime() + (8 * 24 * 60 * 60 * 1000) + (21 * 60 * 60 * 1000) + (34 * 60 * 1000));
-
-    function updatePromoCountdown() {
-        const currentTime = new Date();
-        const timeLeft = targetDate - currentTime;
-
-        if (timeLeft <= 0) return;
-
-        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-        const daysEl = document.getElementById('days');
-        const hoursEl = document.getElementById('hours');
-        const minsEl = document.getElementById('minutes');
-        const secsEl = document.getElementById('seconds');
-
-        if(daysEl) daysEl.innerText = days.toString().padStart(2, '0');
-        if(hoursEl) hoursEl.innerText = hours.toString().padStart(2, '0');
-        if(minsEl) minsEl.innerText = minutes.toString().padStart(2, '0');
-        if(secsEl) secsEl.innerText = seconds.toString().padStart(2, '0');
-    }
-
-    if(document.getElementById('countdown')){
-        setInterval(updatePromoCountdown, 1000);
-        updatePromoCountdown();
-    }
 });
