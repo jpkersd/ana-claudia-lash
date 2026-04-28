@@ -110,12 +110,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
             const formattedDate = dateObj.toLocaleDateString('es-ES', options);
 
-            const message = `¡Hola Ana! 👋 Me gustaría reservar una sesión de maquillaje de ojos premium.\n\n` +
-                `Mis datos para reservar:\n\n` +
-                `✨ Nombre: ${name}\n\n` +
-                `✨ Servicio: ${service}\n\n` +
+            const message = `¡Hola Ana! 👋 Me gustaría programar una cita para extensiones de pestañas.\n\n` +
+                `Mis datos para programar la cita:\n\n` +
+                `✨ Nombre: ${name}\n` +
+                `✨ Servicio: ${service}\n` +
                 `✨ Día preferido: ${formattedDate}\n\n` +
-                `¿Podrías confirmarme tu disponibilidad horaria? ¡Muchas gracias! 🌸`;
+                `¿Podrías confirmarme qué horario tienes disponible? ¡Muchas gracias! 🌸`;
 
             const whatsappUrl = `https://wa.me/34627011250?text=${encodeURIComponent(message)}`;
 
