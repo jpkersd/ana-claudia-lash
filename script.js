@@ -110,14 +110,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
             const formattedDate = dateObj.toLocaleDateString('es-ES', options);
 
-            // Build WhatsApp message
-            const message = `¡Hola Ana! 👋\n\n` +
-                `Me gustaría reservar una cita:\n\n` +
-                `👤 *Nombre:* ${name}\n` +
-                `📱 *Teléfono:* ${phone}\n` +
-                `💫 *Servicio:* ${service}\n` +
-                `📅 *Día de preferencia:* ${formattedDate}\n\n` +
-                `¡Espero tu confirmación! 😊`;
+            const message = `¡Hola Ana! 👋 Me gustaría reservar una sesión de maquillaje de ojos premium.\n\n` +
+                `Mis datos para reservar:\n\n` +
+                `✨ Nombre: ${name}\n\n` +
+                `✨ Servicio: ${service}\n\n` +
+                `✨ Día preferido: ${formattedDate}\n\n` +
+                `¿Podrías confirmarme tu disponibilidad horaria? ¡Muchas gracias! 🌸`;
 
             const whatsappUrl = `https://wa.me/34627011250?text=${encodeURIComponent(message)}`;
 
@@ -154,6 +152,47 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.reveal').forEach(el => {
         revealObserver.observe(el);
     });
+
+    // Countdown Timer for Promotional Banner
+    function updateCountdownTimer() {
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const currentMonth = now.getMonth();
+        
+        // Set end date to the last day of current month at 23:59:59
+        let endDate = new Date(currentYear, currentMonth + 1, 0, 23, 59, 59);
+        
+        function updateTimer() {
+            const currentTime = new Date().getTime();
+            const endTime = endDate.getTime();
+            const difference = endTime - currentTime;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                const daysEl = document.getElementById('days');
+                const hoursEl = document.getElementById('hours');
+                const minutesEl = document.getElementById('minutes');
+                const secondsEl = document.getElementById('seconds');
+
+                if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+                if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+                if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+                if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+            }
+        }
+
+        // Initial update
+        updateTimer();
+        
+        // Update every second
+        setInterval(updateTimer, 1000);
+    }
+
+    updateCountdownTimer();
 
     // Mobile FAB Scroll Logic
     const mobileFab = document.getElementById('mobileFab');

@@ -123,6 +123,39 @@ a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
     width: 100%;
 }
 
+.btn-outline-hero {
+    background-color: transparent;
+    color: var(--color-black);
+    border: 1px solid var(--color-black);
+}
+
+.btn-outline-hero:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+.hero-social-proof {
+    margin-top: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.hero-social-proof .stars {
+    color: #D4AF37; /* Sophisticated Gold */
+    font-size: 1rem;
+    letter-spacing: 2px;
+}
+
+.hero-social-proof span {
+    font-size: 0.75rem;
+    color: var(--color-gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+}
+
 .section {
     padding: var(--spacing-xl) 5%;
 }
@@ -163,14 +196,16 @@ a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--spacing-md) 5%;
+    padding: 1.25rem 5%;
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: rgba(255, 255, 240, 0.98);
-    backdrop-filter: blur(10px);
-    z-index: 100;
+    background-color: rgba(255, 255, 240, 0.9);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 1000;
     border-bottom: 1px solid rgba(170, 152, 169, 0.1);
+    transition: var(--transition-smooth);
 }
 
 .logo {
@@ -367,6 +402,90 @@ a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
 .card p {
     font-size: 1rem;
     margin-bottom: 0;
+}
+
+/* =========================================
+   PROMOTIONAL BANNER WITH COUNTDOWN
+   ========================================= */
+.promo-banner {
+    max-width: 1200px;
+    margin: 0 auto var(--spacing-lg);
+    padding: var(--spacing-md) 5%;
+    background: transparent;
+    border: none;
+    border-top: 1px solid rgba(170, 152, 169, 0.2);
+    border-bottom: 1px solid rgba(170, 152, 169, 0.2);
+    border-radius: 0;
+    text-align: center;
+    box-shadow: none;
+}
+
+.promo-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.promo-text {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-accent-lilac);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.promo-desc {
+    display: none;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 0;
+    flex-wrap: nowrap;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.countdown-number {
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--color-black);
+    font-family: var(--font-body);
+    min-width: auto;
+    text-align: center;
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    line-height: 1;
+}
+
+.countdown-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-gray-500);
+    font-weight: 400;
+    font-family: var(--font-body);
+    white-space: nowrap;
+}
+
+.countdown-divider {
+    font-size: 1.5rem;
+    color: var(--color-gray-300);
+    padding: 0;
+    margin-top: -1rem;
 }
 
 /* =========================================
@@ -671,9 +790,21 @@ a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
         padding: var(--spacing-xl) 5%;
     }
 
+    .navbar {
+        padding: 1rem 7%;
+    }
+
     .hamburger {
         display: flex;
-        z-index: 200;
+        z-index: 2000;
+        gap: 6px;
+    }
+
+    .hamburger span {
+        width: 28px;
+        height: 2px;
+        background-color: var(--color-black);
+        display: block;
     }
 
     .nav-links {
@@ -697,7 +828,7 @@ a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
 
     .hero {
         grid-template-columns: 1fr;
-        padding-top: 80px;
+        padding-top: 60px;
         min-height: auto;
     }
 
@@ -718,7 +849,12 @@ a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
         flex-direction: column;
         gap: 0.8rem;
         width: 100%;
-        padding: 0 10%;
+        padding: 0 5%;
+    }
+
+    .hero-social-proof {
+        align-items: center;
+        margin-top: var(--spacing-sm);
     }
     
     .hero-actions .btn {
@@ -727,14 +863,17 @@ a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
     }
 
     .hero-image {
-        max-height: 45vh;
+        max-height: 50vh;
         width: 100vw;
         margin-left: -5%;
         margin-right: -5%;
+        mask-image: linear-gradient(to bottom, transparent, black 15%);
+        -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%);
     }
 
     .hero-image img {
-        border-radius: 0; /* Keep hero sharp */
+        border-radius: 0;
+        filter: grayscale(100%) contrast(1.1);
     }
 
     .sobre-container,
