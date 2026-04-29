@@ -94,6 +94,29 @@ document.addEventListener('DOMContentLoaded', () => {
         dateInput.setAttribute('min', today);
     }
 
+    // Card "Elegir" buttons → scroll to form + pre-select service
+    document.querySelectorAll('.btn-card').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const service = btn.getAttribute('data-service');
+            const serviceSelect = document.getElementById('service');
+            const contactSection = document.getElementById('contato');
+
+            if (serviceSelect && service) {
+                serviceSelect.value = service;
+                // Highlight the select briefly
+                serviceSelect.style.borderBottomColor = 'var(--color-accent-rose)';
+                setTimeout(() => {
+                    serviceSelect.style.borderBottomColor = '';
+                }, 1500);
+            }
+
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
     // Form → WhatsApp Redirect
     const scheduleForm = document.getElementById('scheduleForm');
     if(scheduleForm) {
@@ -103,24 +126,44 @@ document.addEventListener('DOMContentLoaded', () => {
             const name = document.getElementById('name').value.trim();
             const phone = document.getElementById('phone').value.trim();
             const service = document.getElementById('service').value;
-            const dateInput = document.getElementById('preferred-date').value;
+            const preferredDate = document.getElementById('preferred-date').value;
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Loading state
+            if (submitBtn) {
+                submitBtn.textContent = 'Abriendo WhatsApp...';
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.8';
+            }
 
             // Format date to readable Spanish format
-            const dateObj = new Date(dateInput + 'T00:00:00');
+            const dateObj = new Date(preferredDate + 'T00:00:00');
             const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
             const formattedDate = dateObj.toLocaleDateString('es-ES', options);
 
-            const message = `¡Hola Ana! 👋 Me gustaría programar una cita para extensiones de pestañas.\n\n` +
-                `Mis datos para programar la cita:\n\n` +
+            const message =
+                `¡Hola Ana! 👋 Me gustaría reservar una cita a domicilio para extensiones de pestañas.\n\n` +
+                `📋 Mis datos:\n` +
                 `✨ Nombre: ${name}\n` +
+                `✨ Teléfono: ${phone}\n` +
                 `✨ Servicio: ${service}\n` +
                 `✨ Día preferido: ${formattedDate}\n\n` +
-                `¿Podrías confirmarme qué horario tienes disponible? ¡Muchas gracias! 🌸`;
+                `¿Podrías confirmarme el horario disponible? ¡Muchas gracias! 🌸`;
 
             const whatsappUrl = `https://wa.me/34627011250?text=${encodeURIComponent(message)}`;
 
-            // Open WhatsApp
-            window.open(whatsappUrl, '_blank');
+            // Short delay so user sees feedback, then open WhatsApp
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+                // Reset button after redirect
+                setTimeout(() => {
+                    if (submitBtn) {
+                        submitBtn.textContent = 'Confirmar Cita por WhatsApp →';
+                        submitBtn.disabled = false;
+                        submitBtn.style.opacity = '';
+                    }
+                }, 2000);
+            }, 400);
         });
     }
 
